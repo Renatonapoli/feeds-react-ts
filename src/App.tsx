@@ -1,12 +1,12 @@
 import { Header } from "./components/Header"
 import { Sidebar } from "./components/Sidebar"
-import { Post } from "./components/Post"
+import { Post, PostType } from "./components/Post"
 
 import styles from "./App.module.css"
 
 import "../src/global.css"
 
-const posts = [
+const posts: PostType[] = [
   {
     id: 1,
     author: {
@@ -37,7 +37,7 @@ const posts = [
         type: "paragraph",
         content: `Acabei de subir mais um projeto no meu portifa. É um projeto que fiz usando React + Vite. Fiquem a vontade para dar feedbacks. Bora pra cima!" 🚀 Há não estou salvando em banco essas informações, então deixem o feedback lá nos comentários rs...`,
       },
-      { type: "Link", content: "👉 <a>jane.design/doctorcare</a>" },
+      { type: "link", content: "👉 <a>jane.design/doctorcare</a>" },
     ],
     publishedAt: new Date("2023-05-26 17:02:00"),
   },
@@ -52,14 +52,7 @@ export function App() {
         <Sidebar />
         <main>
           {posts.map((post) => {
-            return (
-              <Post
-                key={post.id}
-                author={post.author}
-                content={post.content}
-                publishedAt={post.publishedAt}
-              />
-            )
+            return <Post key={post.id} post={post} />
           })}
         </main>
       </div>
